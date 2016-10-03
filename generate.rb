@@ -38,16 +38,6 @@ end.parse!
 
 # TODO: add resource to routes file
 
-# files = {
-#   controller: IO.read('Controller.php.erb'),
-#   model:      IO.read('Model.php.erb'),
-#   migration:  IO.read('Migration.php.erb'),
-#   views: {
-#     index: IO.read('index.blade.php.erb'),
-#     show:  IO.read('show.blade.php.erb'),
-#     edit:  IO.read('edit.blade.php.erb'),
-#   }
-# }
 
 if resource == ''
   puts 'You must specify a resource name (try -h for help)'
@@ -58,6 +48,25 @@ attributes
   .map!{|a| a.split('.')}
   .map!{|a| {name: a[0], type: a[1], rules: a[2]}}
 
-file = IO.read('./migration.php.erb')
+# generate the files
+files = {
+  controller: ERB.new(IO.read('Controller.php.erb')).result(binding),
+  model:      ERB.new(IO.read('Model.php.erb')).result(binding),
+  migration:  ERB.new(IO.read('migration.php.erb')).result(binding),
+  views: {
+    index: ERB.new(IO.read('index.blade.php.erb')).result(binding),
+    show:  ERB.new(IO.read('show.blade.php.erb')).result(binding),
+    edit:  ERB.new(IO.read('edit.blade.php.erb')).result(binding),
+    form: ERB.new(IO.read('form.blade.php.erb')).result(binding)
+  }
+}
 
-puts ERB.new(file).result(binding)
+# write the files
+IO.write("out/#{resource.pluralize.capitalize}Controller.php", files[:controller])
+IO.write("out/#{resource.capitalize}.php", files[:model])
+IO.write("out/create_#{resource.pluralize}_table.php", files[:migration])
+IO.write("out/index.blade.php", files[:views][:index])
+IO.write("out/show.blade.php", files[:views][:show])
+IO.write("out/edit.blade.php", files[:views][:edit])
+IO.write("out/form.blade.php", files[:views][:form])
+
