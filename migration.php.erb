@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class Create<%= resource.pluralize.capitalize %>Table extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('<%= resource.pluralize %>', function (Blueprint $table) {
+            $table->increments('id');
+            <% attributes.each do |a| %>
+            $table-><%= a[:type] %>('<%= a[:name] %>');
+            <% end %>
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('<%= resource.pluralize %>');
+    }
+}
