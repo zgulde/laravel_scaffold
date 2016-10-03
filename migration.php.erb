@@ -17,6 +17,11 @@ class Create<%= resource.pluralize.capitalize %>Table extends Migration
             <% attributes.each do |a| %>
             $table-><%= a[:type] %>('<%= a[:name] %>');
             <% end %>
+            <% belongs_to.each do |name| %>
+            $table->integer('<%= name %>_id')->unsigned();
+            $table->foreign('<%= name %>_id')->references('id')->on('<%= name.pluralize %>');
+            <% end %>
+
             $table->timestamps();
         });
     }
