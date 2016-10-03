@@ -1,0 +1,12 @@
+  <% attributes.keys.each do |prop| %>
+    <div class="form-group">
+      <label for="<%= prop %>"><%= prop.capitalize %></label>
+      <input
+        class="form-control"
+        id="<%= prop %>"
+        name="<%= prop %>"
+        value="{{ $<%= resource %>-><%= prop %> }}"
+        type="text">
+    </div>
+  <% end %>
+  <input class="btn btn-block btn-primary" type="submit">

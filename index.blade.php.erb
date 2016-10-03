@@ -1,0 +1,11 @@
+@extends('layouts.master')
+
+@section('content')
+
+<h1>Viewing all <%= resource.pluralize %>.</h1>
+
+@foreach($<%= resource.pluralize %> as $<%= resource %>)
+  
+@endforeach
+
+@stop
