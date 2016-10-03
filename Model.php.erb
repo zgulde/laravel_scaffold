@@ -21,7 +21,7 @@ class <%= resource.capitalize %> extends Model
     <% belongs_to.each do |name| %>
     public function <%= name %>()
     {
-        return $this->belongsTo('App\<%= name.capitalize %>')
+        return $this->belongsTo('App\<%= name.capitalize %>');
     }
     <% end %>
 }
