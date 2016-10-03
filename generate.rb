@@ -31,7 +31,7 @@ OptionParser.new do |opts|
     puts opts
     puts
     puts "Examples"
-    puts "  generator.rb -r post -a 'title.varchar.required|min:5' -a body.text.required --belongs-to=user"
+    puts "  generator.rb -r article -a 'headline.varchar.required|min:5' -a body.text.required --belongs-to=user --has-many=comment"
     exit
   end
 end.parse!
