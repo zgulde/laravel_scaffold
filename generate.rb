@@ -10,16 +10,16 @@ has_many = []
 OptionParser.new do |opts|
   opts.banner = "Usage:\ngenerator.rb -r resource -a attribute.type.rules ..."
 
-  opts.on('-b model_name', '--belongs-to=model_name', 'Define a belongs to relationship') do |m|
+  opts.on('-r resource', '--resource=resource', 'Give the name of the resource') do |r|
+    resource = r
+  end
+
+  opts.on('-t model_name', '--belongs-to=model_name', 'Define a belongs to relationship') do |m|
     belongs_to << m
   end
 
-  opts.on('-h model_name', '--has-many=model_name', 'Define a has many relationship') do |m|
+  opts.on('-m model_name', '--has-many=model_name', 'Define a has many relationship') do |m|
     has_many << m
-  end
-
-  opts.on('-r resource', '--resource=resource', 'Give the name of the resource') do |r|
-    resource = r
   end
 
   opts.on('-a attr', '--attribute=attr', 'Define a attribute for the resource (see the help for the syntax)') do |a|
@@ -42,7 +42,6 @@ end.parse!
 #   controller: IO.read('Controller.php.erb'),
 #   model:      IO.read('Model.php.erb'),
 #   migration:  IO.read('Migration.php.erb'),
-#   seeder:     IO.read('Seeder.php.erb'),
 #   views: {
 #     index: IO.read('index.blade.php.erb'),
 #     show:  IO.read('show.blade.php.erb'),
