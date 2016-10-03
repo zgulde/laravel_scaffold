@@ -50,14 +50,14 @@ attributes
 
 # generate the files
 files = {
-  controller: ERB.new(IO.read('Controller.php.erb')).result(binding),
-  model:      ERB.new(IO.read('Model.php.erb')).result(binding),
-  migration:  ERB.new(IO.read('migration.php.erb')).result(binding),
+  controller: ERB.new(IO.read('templates/Controller.php.erb')).result(binding),
+  model:      ERB.new(IO.read('templates/Model.php.erb')).result(binding),
+  migration:  ERB.new(IO.read('templates/migration.php.erb')).result(binding),
   views: {
-    index: ERB.new(IO.read('index.blade.php.erb')).result(binding),
-    show:  ERB.new(IO.read('show.blade.php.erb')).result(binding),
-    edit:  ERB.new(IO.read('edit.blade.php.erb')).result(binding),
-    form: ERB.new(IO.read('form.blade.php.erb')).result(binding)
+    index: ERB.new(IO.read('templates/index.blade.php.erb')).result(binding),
+    show:  ERB.new(IO.read('templates/show.blade.php.erb')).result(binding),
+    edit:  ERB.new(IO.read('templates/edit.blade.php.erb')).result(binding),
+    form: ERB.new(IO.read('templates/form.blade.php.erb')).result(binding)
   }
 }
 
