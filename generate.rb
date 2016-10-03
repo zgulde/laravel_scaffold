@@ -6,6 +6,7 @@ resource = ''
 attributes = []
 belongs_to = []
 has_many = []
+pagination = false
 
 OptionParser.new do |opts|
   opts.banner = "Usage:\ngenerator.rb -r resource -a attribute.type.rules ..."
@@ -24,6 +25,10 @@ OptionParser.new do |opts|
 
   opts.on('-a attr', '--attribute=attr', 'Define a attribute for the resource (see the help for the syntax)') do |a|
     attributes << a
+  end
+
+  opts.on('-p', '--paginate', 'Include Pagination') do
+    pagination = true
   end
 
   opts.on("-h", "--help", "Print the help and exit") do
@@ -47,6 +52,13 @@ end
 attributes
   .map!{|a| a.split('.')}
   .map!{|a| {name: a[0], type: a[1], rules: a[2]}}
+
+index_query = "#{resource.capitalize}::"
+if ! has_many.empty?
+  index_query += has_many.map{|m| "with('#{m}')"}.join('->')
+  index_query += '->'
+end
+index_query += pagination ? 'paginate(10)' : 'all()'
 
 # generate the files
 files = {

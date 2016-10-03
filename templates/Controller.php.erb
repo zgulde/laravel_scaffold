@@ -16,7 +16,7 @@ class <%= resource.pluralize.capitalize %>Controller extends Controller
     public function index()
     {
         return view('<%= resource.pluralize %>.index')->with([
-            '<%= resource.pluralize %>' => <%= resource.capitalize %>::paginate(10)
+            '<%= resource.pluralize %>' => <%= index_query %>
         ]);
 
     }
