@@ -23,8 +23,8 @@ end
 resource, *attributes = *ARGF.argv
 
 attributes = attributes
-  .map {|a| a.split(':')}
-  .inject({}) { |o,a| o.merge(a[0].to_sym => a[1] || 'text') }
+  .map {|a| a.split('.')}
+  .map {|a| {name: a[0], type: a[1], rules: a[2]}}
 
 
 file = IO.read('./form.blade.php.erb')

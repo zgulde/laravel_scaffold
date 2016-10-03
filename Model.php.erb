@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class <%= resource.capitalize %> extends Model
 {
     public $rules = [
-        <% attributes.each do |name, type| %>'<%= name %>' => '',
+        <% attributes.each do |a| %>'<%= a[:name] %>' => '<%= a[:rules] %>',
         <% end %>
     ];
 
-    protected $fillable = ['<%= attributes.keys.join("', '") %>'];
+    protected $fillable = ['<%= attributes.map{|a| a[:name]}.join("', '") %>'];
 }

@@ -1,4 +1,4 @@
-  <% attributes.keys.each do |prop| %>
+  <% attributes.map{|a| a[:name]}.each do |prop| %>
     <div class="form-group">
       <label for="<%= prop %>"><%= prop.capitalize %></label>
       <input
