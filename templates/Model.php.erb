@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class <%= resource.capitalize %> extends Model
 {
-    public $rules = [
+    public static $rules = [
         <% attributes.each do |a| %>'<%= a[:name] %>' => '<%= a[:rules] %>',
         <% end %>
     ];
