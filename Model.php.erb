@@ -12,4 +12,16 @@ class <%= resource.capitalize %> extends Model
     ];
 
     protected $fillable = ['<%= attributes.map{|a| a[:name]}.join("', '") %>'];
+    <% has_many.each do |name| %>
+    public function <%= name.pluralize %>()
+    {
+        return $this->hasMany('App\<%= name.capitalize %>');
+    }
+    <% end %>
+    <% belongs_to.each do |name| %>
+    public function <%= name %>()
+    {
+        return $this->belongsTo('App\<%= name.capitalize %>')
+    }
+    <% end %>
 }
