@@ -1,0 +1,9 @@
+<div class="form-group col-xs-12">
+  <label for="<%= a[:name] %>"><%= a[:name].capitalize %></label>
+  <input
+    class="form-control"
+    id="<%= a[:name] %>"
+    name="<%= a[:name] %>"
+    value="{{ $<%= resource %>-><%= a[:name] %> }}"
+    type="text">
+</div>

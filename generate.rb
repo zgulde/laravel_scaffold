@@ -43,10 +43,13 @@ end.parse!
 
 # TODO: add resource to routes file
 
-
 if resource == ''
   puts 'You must specify a resource name (try -h for help)'
   exit 1
+end
+
+def render(filepath, a, resource)
+  ERB.new(IO.read(filepath)).result(binding)
 end
 
 attributes
