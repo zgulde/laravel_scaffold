@@ -69,10 +69,11 @@ files = {
   model:      ERB.new(IO.read('templates/Model.php.erb')).result(binding),
   migration:  ERB.new(IO.read('templates/migration.php.erb')).result(binding),
   views: {
-    index: ERB.new(IO.read('templates/index.blade.php.erb')).result(binding),
-    show:  ERB.new(IO.read('templates/show.blade.php.erb')).result(binding),
-    edit:  ERB.new(IO.read('templates/edit.blade.php.erb')).result(binding),
-    form: ERB.new(IO.read('templates/form.blade.php.erb')).result(binding)
+    index:  ERB.new(IO.read('templates/index.blade.php.erb')).result(binding),
+    show:   ERB.new(IO.read('templates/show.blade.php.erb')).result(binding),
+    edit:   ERB.new(IO.read('templates/edit.blade.php.erb')).result(binding),
+    create: ERB.new(IO.read('templates/create.blade.php.erb')).result(binding),
+    form:   ERB.new(IO.read('templates/form.blade.php.erb')).result(binding)
   }
 }
 
@@ -83,5 +84,6 @@ IO.write("out/create_#{resource.pluralize}_table.php", files[:migration])
 IO.write("out/index.blade.php", files[:views][:index])
 IO.write("out/show.blade.php", files[:views][:show])
 IO.write("out/edit.blade.php", files[:views][:edit])
+IO.write("out/create.blade.php", files[:views][:create])
 IO.write("out/form.blade.php", files[:views][:form])
 
