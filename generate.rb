@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'erb'
 require 'active_support/inflector'
 require 'optparse'
@@ -7,6 +9,7 @@ attributes = []
 belongs_to = []
 has_many = []
 pagination = false
+pagination_number = 10
 
 OptionParser.new do |opts|
   opts.banner = "Usage:\ngenerator.rb -r resource -a attribute.type.rules ..."
@@ -27,8 +30,9 @@ OptionParser.new do |opts|
     attributes << a
   end
 
-  opts.on('-p', '--paginate', 'Include Pagination') do
+  opts.on('-p[ num_pages]', '--paginate[=num_pages]', 'Include Pagination (default 10)') do |p|
     pagination = true
+    pagination_number = p || 10
   end
 
   opts.on("-h", "--help", "Print the help and exit") do
@@ -61,7 +65,7 @@ if ! has_many.empty?
   index_query += has_many.map{|m| "with('#{m}')"}.join('->')
   index_query += '->'
 end
-index_query += pagination ? 'paginate(10)' : 'all()'
+index_query += pagination ? "paginate(#{pagination_number})" : 'all()'
 
 # generate the files
 files = {
