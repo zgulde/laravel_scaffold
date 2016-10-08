@@ -1,4 +1,5 @@
 
-<form class="form" action="{{ action('<%= resource.pluralize.capitalize %>Controller@update', $<%= resource %>->id) }}">
+<form class="form" method="POST" action="{{ action('<%= resource.pluralize.capitalize %>Controller@update', $<%= resource %>->id) }}">
+  <input type="hidden" name="_method" value="PUT">
   @include('<%= resource.pluralize %>.form')
 </form>
