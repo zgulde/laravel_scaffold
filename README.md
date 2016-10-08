@@ -2,13 +2,21 @@
 
 This is a ruby script to quickly generate scaffolding for a laravel resource.
 
-The end goal is to invoke the script like so:
+## What?
+
+It's a ruby script that uses a ruby templating language to generate a php
+templating language that generates php that generates html that... turns into
+cat picutes or something. Still with me?
+
+## How?
+
+invoke it like so
 
 ```
-./generate.rb post -f title -f body:text --belongs-to=user --has-many=comment
+./generate.rb -r article -a headline.varchar.required -a 'story.text.required|min:50' --belongs-to=author --has-many=comment
 ```
 
-and have it spit out a model, controller, migration, and associated views for
+and it will spit out a model, controller, migration, and associated views for
 the resource.
 
 The end product will of course have to be looked over, but should generate a
@@ -16,11 +24,3 @@ quick scaffold. The views will be basic bootstrappy forms.
 
 ## TODO
 
-- cleanup excess whitespace in output
-- add eager loading in the controller
-- paramatize the pagination
-- work on views
-    - add csrf token and `_method`
-    - add loop for has_many relationship
-- test all this
-- update readme
