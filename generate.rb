@@ -58,7 +58,9 @@ end
 
 attributes
   .map!{|a| a.split('.')}
-  .map!{|a| {name: a[0], type: a[1], rules: a[2]}}
+  .map!{|a| {name: a[0],
+             type: {name: a[1].split('|').first, params: a[1].split('|')[1..-1]},
+             rules: a[2]}}
 
 index_query = "#{resource.capitalize}::"
 if ! has_many.empty?

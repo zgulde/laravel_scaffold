@@ -15,7 +15,7 @@ class Create<%= resource.pluralize.capitalize %>Table extends Migration
         Schema::create('<%= resource.pluralize %>', function (Blueprint $table) {
             $table->increments('id');
             <% attributes.each do |a| %>
-            $table-><%= a[:type] %>('<%= a[:name] %>');
+                $table-><%= a[:type][:name] %>('<%= a[:name] %>'<%= ", #{a[:type][:params].join(", ")}" if a[:type][:params] %>);
             <% end %>
             <% belongs_to.each do |name| %>
             $table->integer('<%= name %>_id')->unsigned();
