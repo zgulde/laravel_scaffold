@@ -8,4 +8,6 @@
   
 @endforeach
 
+<% if pagination %>{{ $<%= resource.pluralize %>->links() }}<% end %>
+
 @stop
