@@ -6,7 +6,7 @@ This is a ruby script to quickly generate scaffolding for a laravel resource.
 
 It's a ruby script that uses a ruby templating language to run ruby code to
 generate a php templating language that generates php that generates html
-that... turns into cat picutes or something. Still with me?
+that... turns into cat pictures or something. Still with me?
 
 ## Why?
 
@@ -14,7 +14,7 @@ Mostly because I can.
 
 Check out the [way
 generators](https://github.com/laracasts/Laravel-5-Generators-Extended) or
-[laravel crud](https://github.com/kEpEx/laravel-crud-generator) for similiar
+[laravel crud](https://github.com/kEpEx/laravel-crud-generator) for similar
 projects that are actually written in php and tie into laravel through an
 artisan command.
 
