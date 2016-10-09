@@ -39,8 +39,12 @@ OptionParser.new do |opts|
     puts "Quickly scaffold a Laravel resource with a model, controller, migration, and several views"
     puts opts
     puts
+    puts "Format for one attribute"
+    puts "  attribute_name.data_type|args.rules"
+    puts "  where the args for the data type are optional, and the rules are optional"
+    puts
     puts "Examples"
-    puts "  generator.rb -r article -a 'headline.varchar.required|min:5' -a body.text.required --belongs-to=user --has-many=comment"
+    puts "  generator.rb -r article -a 'headline.string|100.required|min:5' -a body.text.required --belongs-to=user --has-many=comment"
     exit
   end
 end.parse!
