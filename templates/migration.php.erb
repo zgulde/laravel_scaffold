@@ -33,6 +33,9 @@ class Create<%= resource.pluralize.capitalize %>Table extends Migration
      */
     public function down()
     {
+        <% unless belongs_to.empty? %>
+        $table->dropForeign(['<%= belongs_to.map{|n| "#{n}_id"}.join("', '") %>']);
+        <% end %>
         Schema::drop('<%= resource.pluralize %>');
     }
 }
